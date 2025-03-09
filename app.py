@@ -46,6 +46,19 @@ def generate():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/features')
+def features():
+    return render_template('features.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/pricing')
+def pricing():
+    return render_template('pricing.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
