@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = 'stylesheet' href="./static/css/output.css">
+    <title>AI Article Generator</title>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-[#ff4d6d] text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">SmartAI Suite</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6">
+            <a href="{{ url_for('home') }}" class="hover:underline">Home</a>
+            <a href="{{ url_for('features') }}" class="hover:underline">Features</a>
+            <a href="{{ url_for('pricing') }}" class="hover:underline">Pricing</a>
+            <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+                
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" class="md:hidden">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col items-center gap-4">
+            <a href="{{ url_for('home') }}" class="hover:underline">Home</a>
+            <a href="{{ url_for('features') }}" class="hover:underline">Features</a>
+            <a href="{{ url_for('pricing') }}" class="hover:underline">Pricing</a>
+            <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+            
+        </div>
+    </nav>
+    <section class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg max-w-2xl text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Generate Your AI Blog</h1>
+        <p class="text-gray-600 mb-6">Enter a prompt or blog title below, and let AI create a compelling blog for you.</p>
+        
+        <textarea id="blog-prompt" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4d6d]" rows="4" placeholder="Write your blog prompt here..."></textarea>
+        
+        <button id="generate-btn" class="mt-4 w-full bg-[#ff4d6d] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#e0435f] transition-all">Generate</button>
+        
+        <div id="ai-response" class="mt-6 p-4 border border-gray-300 bg-gray-50 rounded-lg min-h-[150px] text-gray-700 text-left">
+            <p class="text-gray-500">Your AI-generated blog will appear here...</p>
+        </div>
+    </section>
+    <footer class="bg-[#ff4d6d] text-white text-center p-6 mt-10">
+        <div class="container mx-auto">
+            <p class="text-lg font-semibold">SmartAI Suite</p>
+            <div class="flex justify-center gap-6 space-x-6 mt-3">
+                <a href="#" class="hover:underline">Privacy Policy </a>
+                <a href="#" class="hover:underline">Terms of Service</a>
+                <a href="#" class="hover:underline">Support</a>
+            </div>
+            <p class="mt-4 text-sm">&copy; 2025 SmartAI Suite. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        async function populate() {
+            const prompt = document.getElementById("blog-prompt").value;
+            const responseBox = document.getElementById("ai-response");
+
+            responseBox.innerHTML = "<p class='text-gray-500'>Generating...</p>";  // Loading text
+
+            try {
+                let response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                let data = await response.json();
+                if (data.error) {
+                    responseBox.innerHTML = `<p class='text-red-500'>Error: ${data.error}</p>`;
+                } else {
+                    responseBox.innerHTML = `<p>${data.output}</p>`;
+                }
+            } catch (error) {
+                responseBox.innerHTML = `<p class='text-red-500'>Error: Unable to generate.</p>`;
+            }
+        }
+
+        document.getElementById('generate-btn').addEventListener('click', populate);
+        
+           
+           
+        
+
+
+    </script>
+</body>
+</html>

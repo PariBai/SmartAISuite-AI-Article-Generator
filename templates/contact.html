@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel = 'stylesheet' href="./static/css/output.css">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-[#ff4d6d] text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">SmartAI Suite</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-6">
+                <a href="{{ url_for('home') }}" class="hover:underline">Home</a>
+                <a href="{{ url_for('features') }}" class="hover:underline">Features</a>
+                <a href="{{ url_for('pricing') }}" class="hover:underline">Pricing</a>
+                <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+                
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" class="md:hidden">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col items-center gap-4">
+            <a href="{{ url_for('home') }}" class="hover:underline">Home</a>
+            <a href="{{ url_for('features') }}" class="hover:underline">Features</a>
+            <a href="{{ url_for('pricing') }}" class="hover:underline">Pricing</a>
+            <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+        </div>
+    </nav>
+    <section class="container mx-auto px-6 py-12">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Contact Us</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Contact Form -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-4">Get in Touch</h3>
+                
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-semibold">Name</label>
+                        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:outline-[#ff4d6d]">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-semibold">Email</label>
+                        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg focus:outline-[#ff4d6d]">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-600 font-semibold">Message</label>
+                        <textarea rows="4" placeholder="Your Message" class="w-full p-3 border rounded-lg focus:outline-[#ff4d6d]"></textarea>
+                    </div>
+
+                    <button class="w-full bg-[#ff4d6d] text-white font-bold py-3 rounded-lg hover:bg-[#e03e57] transition-all">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+           <!-- Contact Details with Google Map -->
+<div class="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">
+    <div>
+        <h3 class="text-2xl font-semibold text-gray-700 mb-4">Contact Information</h3>
+        <p class="text-gray-600 mb-2"><strong>Email:</strong> <a href="mailto:contact@aiblog.com" class="text-[#ff4d6d] hover:underline">contact@aiblog.com</a></p>
+        <p class="text-gray-600 mb-2"><strong>Phone:</strong> +92 (555) 123-4567</p>
+        <p class="text-gray-600 mb-4"><strong>Address:</strong> Nisar Ahmed Siddiqui Road, Sukkur, 65200</p>
+        
+        <!-- Google Map Embed -->
+        <div class="mt-4">
+            <iframe 
+                class="w-full h-64 rounded-lg shadow-lg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.6929336424987!2d68.81655977492372!3d27.726765624635682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3935d4af0e0f6721%3A0x6a57455ae708c7b!2sSukkur%20IBA%20University!5e0!3m2!1sen!2s!4v1741113493027!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Mail Button -->
+    <a href="mailto:contact@aiblog.com" class="block text-center mt-6 bg-[#ff4d6d] text-white font-bold py-3 rounded-lg hover:bg-[#e03e57] transition-all">
+        Email Us Directly
+    </a>
+</div>
+
+        </div>
+    </section>
+    <footer class="bg-[#ff4d6d] text-white text-center p-6 mt-10">
+        <div class="container mx-auto">
+            <p class="text-lg font-semibold">SmartAI Suite</p>
+            <div class="flex justify-center gap-6 space-x-6 mt-3">
+                <a href="#" class="hover:underline">Privacy Policy </a>
+                <a href="#" class="hover:underline">Terms of Service</a>
+                <a href="#" class="hover:underline">Support</a>
+            </div>
+            <p class="mt-4 text-sm">&copy; 2025 SmartAI Suite. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
